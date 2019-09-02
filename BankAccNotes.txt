@@ -1,0 +1,11 @@
+
+DONE
+create BankAcc object
+check deposit
+check withdraw
+check balance
+private balance
+what about negative
+
+TO-DO
+what about maximum
