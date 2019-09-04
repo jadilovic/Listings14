@@ -2,6 +2,8 @@ package Code;
 
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -15,18 +17,23 @@ public class CafeTest {
 	private static final int LATTE_MILK = Latte.getRequiredMilk();
 	private static final int LATTE_BEANS = Latte.getRequiredBeans();
 	
+	Cafe kaf;
+	
+	@Before
+	public void before(){
+		kaf = new Cafe();
+	}
 
 	private Cafe cafeWithBeans(){
-		Cafe cafe = new Cafe();
-		cafe.restockBeans(7);
-		return cafe;
+		kaf.restockBeans(ESPRESSO_BEANS);
+		return kaf;
 	}
 
 	@Test
 	public void canBrewEspresso(){
 		
 		// given
-		Cafe kaf = cafeWithBeans();
+		cafeWithBeans();
 		
 		// when
 		Coffee vrstaKafe = kaf.brew(Espresso);
@@ -40,7 +47,7 @@ public class CafeTest {
 	@Test
 	public void brewingEspressoConsumesBeans(){
 		// given
-		Cafe kaf = cafeWithBeans();
+		cafeWithBeans();
 		
 		// when
 		Coffee vrstaKafe = kaf.brew(Espresso);
@@ -52,7 +59,7 @@ public class CafeTest {
 	@Test(expected = IllegalStateException.class)
 	public void lattesRequiresMilk(){
 		// given
-		Cafe kaf = cafeWithBeans();
+		cafeWithBeans();
 		
 		// when
 		kaf.brew(Latte);
@@ -62,7 +69,7 @@ public class CafeTest {
 	public void canBrewLatte(){
 		
 		// given
-		Cafe kaf = cafeWithBeans();
+		cafeWithBeans();
 		kaf.restockMilk(LATTE_MILK);
 		
 		// when
@@ -77,8 +84,6 @@ public class CafeTest {
 	// then
 	@Test(expected = IllegalArgumentException.class)
 	public void mustRestockBeans(){
-		// given
-		Cafe kaf = cafeWithBeans();
 		
 		// when
 		kaf.restockBeans(NO_BEANS);
@@ -86,8 +91,6 @@ public class CafeTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void mustRestockMilk(){
-		// given
-		Cafe kaf = cafeWithBeans();
 		
 		// when
 		kaf.restockMilk(NO_MILK);
