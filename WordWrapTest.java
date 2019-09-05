@@ -25,4 +25,16 @@ public class WordWrapTest {
 		String word = WordWrap.wrap("The Sleepy Brow", LINE_LENGTH);
 		assertEquals("The S\nleepy\n Brow", word);
 	}
+	
+	@Test
+	public void doesWordWrapThreeOrMoreTimes(){
+		String word = WordWrap.wrap("The Sleepy Brow what is t", LINE_LENGTH);
+		assertEquals("The S\nleepy\n Brow\n what\n is t", word);
+	}
+	
+	@Test
+	public void doesWordWrapThreeOrMoreTimeAndLongerLines(){
+		String word = WordWrap.wrap("The Sleepy Brow what is that", LINE_LENGTH);
+		assertEquals("The S\nleepy\n Brow\n what\n is t\nhat", word);
+	}
 }

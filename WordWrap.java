@@ -10,20 +10,11 @@ public class WordWrap {
 		
 		int split = wrapLength;
 		
-		if(stringLength > split){
+		while(stringLength > split){
 			accumulation.append('\n');
-			accumulation.append(wordLine, split, split + wrapLength);
-		}
-		
-		split += wrapLength;
-		
-		if(stringLength > split){
-			accumulation.append('\n');
-			accumulation.append(wordLine, split, stringLength);
-		}
-		
+			accumulation.append(wordLine, split, Math.min(stringLength, split + wrapLength));
+			split += wrapLength;
+		}	
 		return accumulation.toString();
 	}
-
-	
 }
